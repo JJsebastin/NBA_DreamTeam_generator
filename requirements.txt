@@ -4,3 +4,6 @@ numpy
 matplotlib
 seaborn
 datetime
+lxml
+requests
+
