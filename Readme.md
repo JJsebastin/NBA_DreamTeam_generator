@@ -1,27 +1,18 @@
-# 🎯 Streamlit Chatbot & Data Visualizer
+# 🎯 Streamlit NBA Data Visualizer
 
-An interactive **Streamlit-based AI assistant** that combines the power of **data visualization** and **intelligent responses**.  
-It enables users to visualize data dynamically and interact with an AI chatbot for deeper insights and queries.
+An interactive **NBA players stats analyzer** that combines the power of **data visualization** and **intelligent responses**.  
+It enables users to visualize data dynamically and display stats of each player for deeper insights and queries.
+It also has a feature to generate Dream team seeds and calculate win percentage of each seed against another. This can be modified by each NBA season
 
 ---
 
 ## 🌟 Features
-
-✅ **Interactive Chatbot Interface** – Ask queries and get instant responses.  
+  
 ✅ **Dynamic Data Visualization** – Displays insights using beautiful, animated graphs.  
-✅ **Real-time Analytics** – View totals, comparisons, and statistics dynamically.  
+✅ **Real-time Analytics** – View totals, comparisons, and statistics of each player and team dynamically.  
 ✅ **Lightweight & Fast** – Built with Streamlit’s responsive web framework.  
 ✅ **Deployable Anywhere** – Works on any device via Streamlit Cloud.
 
----
-
-## 🖼️ Preview
-
-| Chatbot Interface | Data Visualization |
-|-------------------|--------------------|
-| ![Chatbot UI](assets/chatbot_ui.png) | ![Graph Example](assets/graph_preview.png) |
-
-*(Add your screenshots in an `/assets` folder and update the paths above.)*
 
 ---
 
@@ -30,7 +21,6 @@ It enables users to visualize data dynamically and interact with an AI chatbot f
 | Category | Tools / Libraries |
 |-----------|-------------------|
 | **Frontend** | Streamlit |
-| **Backend / AI** | LangChain / phi3 / OpenAI |
 | **Data Handling** | Pandas, NumPy |
 | **Visualization** | Matplotlib, Plotly |
 | **Deployment** | Streamlit Cloud / GitHub |
@@ -43,4 +33,5 @@ Clone this repository:
 ```bash
 git clone https://github.com/<your-username>/<repo-name>.git
 cd <repo-name>
+
 
