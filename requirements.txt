@@ -9,4 +9,6 @@ requests
 google-generativeai
 langchain
 faiss-cpu
+sentence-transformers
+tiktoken
 
