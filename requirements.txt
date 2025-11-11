@@ -8,7 +8,8 @@ lxml
 requests
 google-generativeai
 langchain
+langchain-community
+langchain-core
 faiss-cpu
 sentence-transformers
 tiktoken
-
