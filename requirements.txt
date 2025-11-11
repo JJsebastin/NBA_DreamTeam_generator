@@ -6,4 +6,7 @@ seaborn
 datetime
 lxml
 requests
+google-generativeai
+langchain
+faiss-cpu
 
