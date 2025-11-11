@@ -184,7 +184,7 @@ else:
             context = "\n".join([doc.page_content for doc in matched_docs])
 
             # Generate response using Gemini
-            model = genai.GenerativeModel("gemini-pro")
+            model = genai.GenerativeModel("gemini-1.5-flash")
             prompt = (
                 "You are an expert NBA data analyst. "
                 "Use only the data provided below to answer queries. "
@@ -198,6 +198,7 @@ else:
                 st.write(response.text)
             except Exception as e:
                 st.error(f"Error generating response: {e}")
+
 
 
 
