@@ -146,7 +146,7 @@ import google.generativeai as genai
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_core.documents import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 st.markdown("---")
 st.header("🏀 NBA Insights RAG Agent")
@@ -198,5 +198,6 @@ else:
                 st.write(response.text)
             except Exception as e:
                 st.error(f"Error generating response: {e}")
+
 
 
