@@ -16,7 +16,7 @@ It also has a feature to generate Dream team seeds and calculate win percentage 
 
 ---
 
-## 🧠 Tech Stack
+## Tech Stack
 
 | Category | Tools / Libraries |
 |-----------|-------------------|
@@ -34,4 +34,8 @@ Clone this repository:
 git clone https://github.com/<your-username>/<repo-name>.git
 cd <repo-name>
 
+---
 
+##  Further Updations
+- Integration of RAG chatbot for better question answer of individual stats
+- Gives insights about each player career best gameplays and records.
