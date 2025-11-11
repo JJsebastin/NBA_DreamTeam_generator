@@ -136,3 +136,66 @@ if 'PTS' in df_selected_team.columns:
     st.line_chart(team_points.set_index('Team'))
 else:
     st.warning("PTS column not available for visualization.")
+
+
+# -------------------------------------------------------
+# 🧠 NBA Insights RAG Agent (Gemini + FAISS)
+# -------------------------------------------------------
+import os
+import google.generativeai as genai
+from langchain.vectorstores import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.schema import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+st.markdown("---")
+st.header("🏀 NBA Insights RAG Agent")
+
+# Get API key from Streamlit secrets
+api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    st.warning("Gemini API key not found. Please add it in Streamlit Secrets.")
+else:
+    genai.configure(api_key=api_key)
+
+    # Convert your playerstats DataFrame to text
+    st.write("Preparing dataset embeddings... (first-time load may take 20s)")
+    data_text = ""
+    for _, row in playerstats.iterrows():
+        data_text += f"Player: {row.get('Player', '')}, Position: {row.get('Pos', '')}, Team: {row.get('Team', '')}, PTS: {row.get('PTS', '')}, AST: {row.get('AST', '')}, TRB: {row.get('TRB', '')}, STL: {row.get('STL', '')}, BLK: {row.get('BLK', '')}\n"
+
+    # Chunk data for embeddings
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    docs = [Document(page_content=chunk) for chunk in splitter.split_text(data_text)]
+
+    # Create embeddings
+    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    db = FAISS.from_documents(docs, embeddings)
+
+    # Chat interface
+    st.subheader("💬 Ask any basketball query based on this dataset:")
+    user_query = st.text_input("Type your question:")
+
+    if user_query:
+        with st.spinner("Fetching insights..."):
+            # Retrieve top matching chunks
+            matched_docs = db.similarity_search(user_query, k=4)
+            context = "\n".join([doc.page_content for doc in matched_docs])
+
+            # Generate response using Gemini
+            model = genai.GenerativeModel("gemini-pro")
+            prompt = (
+                "You are an expert NBA data analyst. "
+                "Use only the data provided below to answer queries. "
+                "Give clear and factual basketball insights.\n\n"
+                f"Context:\n{context}\n\nUser Question: {user_query}"
+            )
+
+            try:
+                response = model.generate_content(prompt)
+                st.success("🏀 Insight:")
+                st.write(response.text)
+            except Exception as e:
+                st.error(f"Error generating response: {e}")
+
