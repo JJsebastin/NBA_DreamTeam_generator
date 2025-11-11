@@ -143,9 +143,9 @@ else:
 # -------------------------------------------------------
 import os
 import google.generativeai as genai
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.schema import Document
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_core.documents import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 st.markdown("---")
@@ -198,4 +198,5 @@ else:
                 st.write(response.text)
             except Exception as e:
                 st.error(f"Error generating response: {e}")
+
 
